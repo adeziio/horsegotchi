@@ -53,9 +53,9 @@ export default class Main extends Component {
 
     tick() {
         const activity = this.state.activity;
-        this.handleDayIncrement()
         this.checkDead()
         if (this.state.gamePage && !this.state.isDead) {
+            this.handleDayIncrement()
             if (activity === "feed") {
                 this.setState(prevState => ({
                     hungerValue: prevState.hungerValue < 100 ? prevState.hungerValue + 5 : prevState.hungerValue,
