@@ -339,13 +339,13 @@ export default class Main extends Component {
                             {getInfoDisplay()}
                             <div class="grid-container">
                                 <button className="icons-button" title="Feed" onClick={this.toggleClickedCarrot}>
-                                    <img src={activity === "feed" ? CarrotClicked : Carrot} alt="feed" />
+                                    <img className="button-img" src={activity === "feed" ? CarrotClicked : Carrot} alt="feed" />
                                 </button>
                                 <button className="icons-button" title="Pet" onClick={this.toggleClickedHandHeart}>
-                                    <img src={activity === "pet" ? HandHeartClicked : HandHeart} alt="pet" />
+                                    <img className="button-img" src={activity === "pet" ? HandHeartClicked : HandHeart} alt="pet" />
                                 </button>
                                 <button className="icons-button" title="Walk" onClick={this.toggleClickedWalk}>
-                                    <img src={activity === "walk" ? WalkClicked : Walk} alt="walk" />
+                                    <img className="button-img" src={activity === "walk" ? WalkClicked : Walk} alt="walk" />
                                 </button>
                             </div>
                         </>

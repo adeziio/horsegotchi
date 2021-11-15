@@ -132,18 +132,17 @@ h1 {
 }
 
 .icons-button {
-    padding: 0px;
     border: none;
     background: none;
-    padding: -20px;
-    margin: -20px;
+}
+
+.button-img {
+    max-width: 120px;
 }
 
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-auto-columns: 20px;
-    grid-gap: 60px;
 }
 
 label {
