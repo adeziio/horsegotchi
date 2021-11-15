@@ -55,39 +55,39 @@ export default class Main extends Component {
         const activity = this.state.activity;
         this.handleDayIncrement()
         this.checkDead()
-        if (this.state.gamePage && !this.state.isDead) {
-            if (activity === "feed") {
-                this.setState(prevState => ({
-                    hungerValue: prevState.hungerValue < 100 ? prevState.hungerValue + 5 : prevState.hungerValue,
-                    affectionValue: prevState.affectionValue > 0 ? prevState.affectionValue - 1 : prevState.affectionValue,
-                    fatigueValue: prevState.fatigueValue > 0 ? prevState.fatigueValue - 1 : prevState.fatigueValue,
-                    score: prevState.score + 350
-                }));
-            }
-            else if (activity === "pet") {
-                this.setState(prevState => ({
-                    hungerValue: prevState.hungerValue > 0 ? prevState.hungerValue - 5 : prevState.hungerValue,
-                    affectionValue: prevState.affectionValue < 100 ? prevState.affectionValue + 5 : prevState.affectionValue,
-                    fatigueValue: prevState.fatigueValue < 100 ? prevState.fatigueValue + 2 : prevState.fatigueValue,
-                    score: prevState.score + 150
-                }));
-            }
-            else if (activity === "walk") {
-                this.setState(prevState => ({
-                    hungerValue: prevState.hungerValue > 0 ? prevState.hungerValue - 5 : prevState.hungerValue,
-                    affectionValue: prevState.affectionValue > 0 ? prevState.affectionValue - 2 : prevState.affectionValue,
-                    fatigueValue: prevState.fatigueValue < 100 ? prevState.fatigueValue + 5 : prevState.fatigueValue,
-                    score: prevState.score + 550
-                }));
-            }
-            else {
-                this.setState(prevState => ({
-                    hungerValue: prevState.hungerValue > 0 ? prevState.hungerValue - 1 : prevState.hungerValue,
-                    affectionValue: prevState.affectionValue > 0 ? prevState.affectionValue - 2 : prevState.affectionValue,
-                    fatigueValue: prevState.fatigueValue > 0 ? prevState.fatigueValue - 1 : prevState.fatigueValue
-                }));
-            }
-        }
+        // if (this.state.gamePage && !this.state.isDead) {
+        //     if (activity === "feed") {
+        //         this.setState(prevState => ({
+        //             hungerValue: prevState.hungerValue < 100 ? prevState.hungerValue + 5 : prevState.hungerValue,
+        //             affectionValue: prevState.affectionValue > 0 ? prevState.affectionValue - 1 : prevState.affectionValue,
+        //             fatigueValue: prevState.fatigueValue > 0 ? prevState.fatigueValue - 1 : prevState.fatigueValue,
+        //             score: prevState.score + 350
+        //         }));
+        //     }
+        //     else if (activity === "pet") {
+        //         this.setState(prevState => ({
+        //             hungerValue: prevState.hungerValue > 0 ? prevState.hungerValue - 5 : prevState.hungerValue,
+        //             affectionValue: prevState.affectionValue < 100 ? prevState.affectionValue + 5 : prevState.affectionValue,
+        //             fatigueValue: prevState.fatigueValue < 100 ? prevState.fatigueValue + 2 : prevState.fatigueValue,
+        //             score: prevState.score + 150
+        //         }));
+        //     }
+        //     else if (activity === "walk") {
+        //         this.setState(prevState => ({
+        //             hungerValue: prevState.hungerValue > 0 ? prevState.hungerValue - 5 : prevState.hungerValue,
+        //             affectionValue: prevState.affectionValue > 0 ? prevState.affectionValue - 2 : prevState.affectionValue,
+        //             fatigueValue: prevState.fatigueValue < 100 ? prevState.fatigueValue + 5 : prevState.fatigueValue,
+        //             score: prevState.score + 550
+        //         }));
+        //     }
+        //     else {
+        //         this.setState(prevState => ({
+        //             hungerValue: prevState.hungerValue > 0 ? prevState.hungerValue - 1 : prevState.hungerValue,
+        //             affectionValue: prevState.affectionValue > 0 ? prevState.affectionValue - 2 : prevState.affectionValue,
+        //             fatigueValue: prevState.fatigueValue > 0 ? prevState.fatigueValue - 1 : prevState.fatigueValue
+        //         }));
+        //     }
+        // }
     }
 
     handleDayIncrement = () => {
