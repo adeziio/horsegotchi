@@ -141,13 +141,13 @@ h1 {
 }
 
 .grid-container {
+    width: 650px;
+    max-width: 100%;
     margin-right: 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     position: absolute;
-    bottom: -65%;
-    z-index: 30;
-    font-family: 'Indie Flower';
+    bottom: -50%;
 }
 
 label {
