@@ -42,7 +42,8 @@ export default class Main extends Component {
             affectionValue: 100,
             fatigueValue: 0,
             isDead: false,
-            showCredit: false
+            showCredit: false,
+            score: 0
         }
     }
 
@@ -58,22 +59,25 @@ export default class Main extends Component {
             if (activity === "feed") {
                 this.setState(prevState => ({
                     hungerValue: prevState.hungerValue !== 100 ? prevState.hungerValue + 5 : prevState.hungerValue,
-                    affectionValue: prevState.affectionValue !== 100 ? prevState.affectionValue + 1 : prevState.affectionValue,
-                    fatigueValue: prevState.fatigueValue !== 0 ? prevState.fatigueValue - 1 : prevState.fatigueValue
+                    affectionValue: prevState.affectionValue !== 100 ? prevState.affectionValue - 1 : prevState.affectionValue,
+                    fatigueValue: prevState.fatigueValue !== 0 ? prevState.fatigueValue - 1 : prevState.fatigueValue,
+                    score: prevState.score + 350
                 }));
             }
             else if (activity === "pet") {
                 this.setState(prevState => ({
                     hungerValue: prevState.hungerValue !== 0 ? prevState.hungerValue - 2 : prevState.hungerValue,
                     affectionValue: prevState.affectionValue !== 100 ? prevState.affectionValue + 5 : prevState.affectionValue,
-                    fatigueValue: prevState.fatigueValue !== 0 ? prevState.fatigueValue - 1 : prevState.fatigueValue
+                    fatigueValue: prevState.fatigueValue !== 0 ? prevState.fatigueValue - 1 : prevState.fatigueValue,
+                    score: prevState.score + 120
                 }));
             }
             else if (activity === "walk") {
                 this.setState(prevState => ({
                     hungerValue: prevState.hungerValue !== 0 ? prevState.hungerValue - 2 : prevState.hungerValue,
-                    affectionValue: prevState.affectionValue !== 100 ? prevState.affectionValue + 1 : prevState.affectionValue,
-                    fatigueValue: prevState.fatigueValue !== 100 ? prevState.fatigueValue + 5 : prevState.fatigueValue
+                    affectionValue: prevState.affectionValue !== 100 ? prevState.affectionValue - 1 : prevState.affectionValue,
+                    fatigueValue: prevState.fatigueValue !== 100 ? prevState.fatigueValue + 5 : prevState.fatigueValue,
+                    score: prevState.score + 120
                 }));
             }
             else {
@@ -195,6 +199,10 @@ export default class Main extends Component {
         })
     }
 
+    refreshPage = () => {
+        window.location.reload(false);
+    }
+
     render() {
         const {
             menuPage,
@@ -211,12 +219,10 @@ export default class Main extends Component {
             affectionValue,
             fatigueValue,
             isDead,
-            showCredit
+            showCredit,
+            score
         } = this.state;
 
-        console.log(hungerValue,
-            affectionValue,
-            fatigueValue)
         const getIntroPage = () => {
             if (introPageNumber === 0) {
                 return (
@@ -407,6 +413,7 @@ export default class Main extends Component {
                     </div>
 
                     <div className="counter">Day: {dayCounter} </div>
+                    <div className="score">Score: {score} </div>
                 </>
             )
         }
@@ -416,7 +423,9 @@ export default class Main extends Component {
                 <>
                     {!showCredit ?
                         <>
-                            <div class="game-over">Game Over</div>
+                            <div className="game-over">Game Over</div>
+                            <div className="counter">Day: {dayCounter} </div>
+                            <div className="score">Score: {score} </div>
                             <img alt="title_page" src={HorseDead} />
                             <div className="text-box" onClick={this.toggleShowCredits}>
                                 <span className="orange"> {this.state.horseName} </span>
@@ -461,7 +470,7 @@ export default class Main extends Component {
         return (
             <div>
                 <div className="center">
-                    <img className="center" src={Title} alt="name" />
+                    <img className="center" src={Title} alt="name" onClick={this.refreshPage} />
                 </div>
                 <div className="container">
                     {menuPage ? (
