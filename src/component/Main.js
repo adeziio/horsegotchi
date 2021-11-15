@@ -5,10 +5,23 @@ import TitlePage from "./../gifs/title-page.gif";
 import PlayGame from "./../img/play-game.png";
 import Continue from "./../img/continue.png";
 import HorseSmile from "./../img/horse-smile.png";
-import BabyHorse from "./../img/baby-horse.png";
+import HorseBaby from "./../img/horse-baby.png";
 import HorseSad from "./../img/horse-sad.png";
 import HorseHappy from "./../img/horse-happy.png";
 import HorseIntrigue from "./../img/horse-intrigue.png";
+import HorseDead from "./../img/horse-dead.png";
+import MailAlert from "./../img/mail-alert.png";
+import MailOpen from "./../img/mail-open.png";
+import HorseIdle from "./../gifs/horse-idle.gif";
+import HorseCarrot from "./../gifs/horse-carrot.gif";
+import HorseHandHeart from "./../gifs/horse-hand-heart.gif";
+import HorseWalk from "./../gifs/horse-walk.gif";
+import Carrot from "./../img/carrot.png";
+import CarrotClicked from "./../img/carrot-clicked.png";
+import HandHeart from "./../img/hand-heart.png";
+import HandHeartClicked from "./../img/hand-heart-clicked.png";
+import Walk from "./../img/walk.png";
+import WalkClicked from "./../img/walk-clicked.png";
 
 export default class Main extends Component {
     constructor(props) {
@@ -17,10 +30,79 @@ export default class Main extends Component {
             menuPage: true,
             playerNameInputPage: false,
             horseNameInputPage: false,
-            playerName: "",
-            horseName: "",
+            playerName: "Bob",
+            horseName: "Herald",
             introPage: false,
             introPageNumber: 0,
+            gamePage: false,
+            dayCounter: 1,
+            secondCounter: 0,
+            activity: "",
+            hungerValue: 100,
+            affectionValue: 100,
+            fatigueValue: 0,
+            isDead: false,
+            showCredit: false
+        }
+    }
+
+    componentDidMount() {
+        this.interval = setInterval(() => this.tick(), 1000);
+    }
+
+    tick() {
+        const activity = this.state.activity;
+        this.handleDayIncrement()
+        this.checkDead()
+        if (this.state.gamePage && !this.state.isDead) {
+            if (activity === "feed") {
+                this.setState(prevState => ({
+                    hungerValue: prevState.hungerValue !== 100 ? prevState.hungerValue + 5 : prevState.hungerValue,
+                    affectionValue: prevState.affectionValue !== 100 ? prevState.affectionValue + 1 : prevState.affectionValue,
+                    fatigueValue: prevState.fatigueValue !== 0 ? prevState.fatigueValue - 1 : prevState.fatigueValue
+                }));
+            }
+            else if (activity === "pet") {
+                this.setState(prevState => ({
+                    hungerValue: prevState.hungerValue !== 0 ? prevState.hungerValue - 2 : prevState.hungerValue,
+                    affectionValue: prevState.affectionValue !== 100 ? prevState.affectionValue + 5 : prevState.affectionValue,
+                    fatigueValue: prevState.fatigueValue !== 0 ? prevState.fatigueValue - 1 : prevState.fatigueValue
+                }));
+            }
+            else if (activity === "walk") {
+                this.setState(prevState => ({
+                    hungerValue: prevState.hungerValue !== 0 ? prevState.hungerValue - 2 : prevState.hungerValue,
+                    affectionValue: prevState.affectionValue !== 100 ? prevState.affectionValue + 1 : prevState.affectionValue,
+                    fatigueValue: prevState.fatigueValue !== 100 ? prevState.fatigueValue + 5 : prevState.fatigueValue
+                }));
+            }
+            else {
+                this.setState(prevState => ({
+                    hungerValue: prevState.hungerValue !== 0 ? prevState.hungerValue - 1 : prevState.hungerValue,
+                    affectionValue: prevState.affectionValue !== 0 ? prevState.affectionValue - 2 : prevState.affectionValue,
+                    fatigueValue: prevState.fatigueValue !== 0 ? prevState.fatigueValue - 1 : prevState.fatigueValue
+                }));
+            }
+        }
+    }
+
+    handleDayIncrement = () => {
+        this.setState(prevState => ({
+            secondCounter: prevState.secondCounter + 1
+        }), () => {
+            if (this.state.secondCounter % 60 === 0) {
+                this.setState(prevState => ({
+                    dayCounter: prevState.dayCounter + 1
+                }))
+            }
+        })
+    }
+
+    checkDead = () => {
+        if (this.state.hungerValue <= 0 || this.state.hungerValue > 100 || this.state.affectionValue <= 0 || this.state.fatigueValue > 100) {
+            this.setState({
+                isDead: true
+            })
         }
     }
 
@@ -36,6 +118,11 @@ export default class Main extends Component {
             this.setState({
                 playerNameInputPage: false,
                 horseNameInputPage: true
+            })
+        }
+        else {
+            this.setState({
+                playerName: "Bob"
             })
         }
     }
@@ -59,6 +146,11 @@ export default class Main extends Component {
                 introPage: true
             })
         }
+        else {
+            this.setState({
+                horseName: "Herald"
+            })
+        }
     }
 
     incrementIntroPageNumber = () => {
@@ -67,6 +159,41 @@ export default class Main extends Component {
         }))
     }
 
+    setActivity = (activity) => {
+        if (activity === "feed") {
+            this.setState({
+                activity: this.state.activity !== "feed" ? "feed" : "",
+            })
+        }
+        else if (activity === "pet") {
+            this.setState({
+                activity: this.state.activity !== "pet" ? "pet" : ""
+            })
+        }
+        else if (activity === "walk") {
+            this.setState({
+                activity: this.state.activity !== "walk" ? "walk" : ""
+            })
+        }
+    }
+
+    toggleClickedCarrot = () => {
+        this.setActivity("feed");
+    }
+
+    toggleClickedHandHeart = () => {
+        this.setActivity("pet");
+    }
+
+    toggleClickedWalk = () => {
+        this.setActivity("walk");
+    }
+
+    toggleShowCredits = () => {
+        this.setState({
+            showCredit: true
+        })
+    }
 
     render() {
         const {
@@ -76,9 +203,20 @@ export default class Main extends Component {
             playerName,
             horseName,
             introPage,
-            introPageNumber
+            introPageNumber,
+            gamePage,
+            dayCounter,
+            activity,
+            hungerValue,
+            affectionValue,
+            fatigueValue,
+            isDead,
+            showCredit
         } = this.state;
 
+        console.log(hungerValue,
+            affectionValue,
+            fatigueValue)
         const getIntroPage = () => {
             if (introPageNumber === 0) {
                 return (
@@ -97,7 +235,7 @@ export default class Main extends Component {
             else if (introPageNumber === 1) {
                 return (
                     <>
-                        <img alt="title_page" src={BabyHorse} />
+                        <img alt="title_page" src={HorseBaby} />
                         <div className="text-box" onClick={this.incrementIntroPageNumber}>
                             In fact,
                             <span className="orange"> {this.state.horseName} </span>
@@ -148,7 +286,7 @@ export default class Main extends Component {
                     <>
                         <img alt="title_page" src={HorseIntrigue} />
                         <div className="text-box" onClick={this.incrementIntroPageNumber}>
-                            Oh wait! The doctor's mail has arrived.
+                            Oh look! The doctor's mail has arrived.
                         </div>
                     </>
                 )
@@ -156,19 +294,178 @@ export default class Main extends Component {
             else if (introPageNumber === 6) {
                 return (
                     <>
-                        <img alt="title_page" src={HorseIntrigue} />
-                        <div className="text-box" >
-                            To be continued...
+                        <img alt="title_page" src={HorseSmile} />
+                        <button className="corner-button" onClick={this.incrementIntroPageNumber}>
+                            <img src={MailAlert} alt="mail" />
+                        </button>
+                    </>
+                )
+            }
+            else if (introPageNumber === 7) {
+                return (
+                    <>
+                        <img alt="title_page" src={HorseHappy} />
+                        <button className="corner-button" onClick={this.incrementIntroPageNumber}>
+                            <img src={MailOpen} alt="mail" />
+                        </button>
+                        <div className="text-box" onClick={this.incrementIntroPageNumber}>
+                            Yay! Doctor says
+                            <span className="orange"> {this.state.horseName} </span>
+                            can have carrots!
                         </div>
                     </>
                 )
             }
+            else {
+                this.setState({
+                    introPage: false,
+                    gamePage: true
+                })
+            }
+        }
+
+        const getGamePage = () => {
+            return (
+                <>
+                    {!isDead ?
+                        <>
+                            {getActivityDisplay()}
+                            {getInfoDisplay()}
+                            <div class="grid-container">
+                                <button className="icons-button" title="Feed" onClick={this.toggleClickedCarrot}>
+                                    <img src={activity === "feed" ? CarrotClicked : Carrot} alt="feed" />
+                                </button>
+                                <button className="icons-button" title="Pet" onClick={this.toggleClickedHandHeart}>
+                                    <img src={activity === "pet" ? HandHeartClicked : HandHeart} alt="pet" />
+                                </button>
+                                <button className="icons-button" title="Walk" onClick={this.toggleClickedWalk}>
+                                    <img src={activity === "walk" ? WalkClicked : Walk} alt="walk" />
+                                </button>
+                            </div>
+                        </>
+                        : <>{getDeathDisplay()}</>
+                    }
+                </>
+            )
+        }
+
+        const getActivityDisplay = () => {
+            return (
+                <>
+                    <img alt="title_page"
+                        src={
+                            activity === "feed" ?
+                                HorseCarrot :
+                                activity === "pet" ?
+                                    HorseHandHeart :
+                                    activity === "walk" ?
+                                        HorseWalk :
+                                        (hungerValue < 40 || affectionValue < 40 || fatigueValue > 60) ?
+                                            HorseSad : HorseIdle
+
+
+                        }
+                    />
+                    {hungerValue < 40 && hungerValue > 0 ?
+                        <div className="text-box" onClick={this.incrementIntroPageNumber}>
+                            <span className="orange"> {this.state.horseName} </span>
+                            is feeling hungry!
+                        </div> : null
+                    }
+                    {affectionValue < 40 && affectionValue > 0 ?
+                        <div className="text-box" onClick={this.incrementIntroPageNumber}>
+                            <span className="orange"> {this.state.horseName} </span>
+                            is feeling sad!
+                        </div> : null
+                    }
+                    {fatigueValue > 60 && fatigueValue < 100 ?
+                        <div className="text-box" onClick={this.incrementIntroPageNumber}>
+                            <span className="orange"> {this.state.horseName} </span>
+                            is feeling tired!
+                        </div> : null
+                    }
+                </>
+            )
+        }
+
+        const getInfoDisplay = () => {
+            return (
+                <>
+                    <div className="activity-bar">
+                        <div className="activity-item">
+                            <label style={{ marginRight: "15px" }}>Hunger: </label>
+                            <progress value={hungerValue} max="100"></progress>
+                        </div>
+                        <div className="activity-item">
+                            <label>Affection: </label>
+                            <progress value={affectionValue} max="100"></progress>
+                        </div>
+                        <div className="activity-item">
+                            <label style={{ marginRight: "14px" }}>Fatigue: </label>
+                            <progress value={fatigueValue} max="100"></progress>
+                        </div>
+                    </div>
+
+                    <div className="counter">Day: {dayCounter} </div>
+                </>
+            )
+        }
+
+        const getDeathDisplay = () => {
+            return (
+                <>
+                    {!showCredit ?
+                        <>
+                            <div class="game-over">Game Over</div>
+                            <img alt="title_page" src={HorseDead} />
+                            <div className="text-box" onClick={this.toggleShowCredits}>
+                                <span className="orange"> {this.state.horseName} </span>
+                                {this.state.hungerValue <= 0 ? 'starved to death...' : null}
+                                {this.state.hungerValue > 100 ? 'got fat and died...' : null}
+                                {this.state.affectionValue <= 0 ? 'is sad to death...' : null}
+                                {this.state.fatigueValue > 100 ? 'is tired to death...' : null}
+                            </div>
+                        </>
+                        :
+                        <>
+                            <h1>Credits</h1>
+                            <div class="credits">Art</div>
+                            <div class="credits-body">Phuong</div>
+                            <div class="credits-body">Little cousin</div>
+
+                            <div class="credits">Animation</div>
+                            <div class="credits-body">Little cousin</div>
+
+                            <div class="credits">Character Design</div>
+                            <div class="credits-body">Phuong</div>
+
+                            <div class="credits">Gameplay Design</div>
+                            <div class="credits-body">Aden</div>
+
+                            <div class="credits">Programming</div>
+                            <div class="credits-body">Aden</div>
+                            <div class="credits-body">Phuong</div>
+
+                            <div class="credits">Icons</div>
+                            <div class="credits-body">Phuong</div>
+
+                            <div class="credits">End Scenes</div>
+                            <div class="credits-body">Little cousin</div>
+                            <div class="credits-body">Phuong</div>
+
+                            <div class="credits">Actors</div>
+                            <div class="credits-body">{horseName}</div>
+                            <div class="credits-body">{playerName}</div>
+                        </>
+                    }
+                </>
+            )
         }
 
         return (
             <div>
                 <div className="center">
-                    <img src={Title} alt="name" />
+                    <img className="center" src={Title} alt="name" />
                 </div>
                 <div className="container">
                     {menuPage ? (
@@ -184,7 +481,7 @@ export default class Main extends Component {
                                 <img alt="title_page" src={TitlePage} />
                                 <div className="text-box">What's your name? (Not that important)</div>
                                 <form className="form-box">
-                                    <input key="1" type="text" placeholder="Name" onChange={this.savePlayerName} />
+                                    <input key="1" type="text" placeholder="Name" value={playerName} onChange={this.savePlayerName} />
                                 </form>
                                 <button class="top-button" onClick={this.showPetNameInput}>
                                     <img src={Continue} alt="continue_button"></img>
@@ -196,7 +493,7 @@ export default class Main extends Component {
                                     <img alt="title_page" src={TitlePage} />
                                     <div className="text-box">Name your pet horse.</div>
                                     <form className="form-box">
-                                        <input key="2" type="text" placeholder="Name" onChange={this.saveHorseName} />
+                                        <input key="2" type="text" placeholder="Name" value={horseName} onChange={this.saveHorseName} />
                                     </form>
                                     <button className="top-button" onClick={this.showIntro}>
                                         <img src={Continue} alt="continue_button"></img>
@@ -209,6 +506,12 @@ export default class Main extends Component {
                     {introPage ?
                         <div>
                             {getIntroPage()}
+                        </div> : null
+                    }
+
+                    {gamePage ?
+                        <div>
+                            {getGamePage()}
                         </div> : null
                     }
                 </div>
