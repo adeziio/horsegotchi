@@ -94,7 +94,7 @@ export default class Main extends Component {
         this.setState(prevState => ({
             secondCounter: prevState.secondCounter + 1
         }), () => {
-            if (this.state.secondCounter % 60 === 0) {
+            if (this.state.secondCounter % 60 === 0 && !this.isDead) {
                 this.setState(prevState => ({
                     dayCounter: prevState.dayCounter + 1
                 }))
@@ -227,7 +227,7 @@ export default class Main extends Component {
             if (introPageNumber === 0) {
                 return (
                     <>
-                        <img alt="title_page" src={HorseSmile} />
+                        <img className="container" alt="title_page" src={HorseSmile} />
                         <div className="text-box" onClick={this.incrementIntroPageNumber}>
                             This is
                             <span className="orange"> {this.state.horseName} </span>.
@@ -241,7 +241,7 @@ export default class Main extends Component {
             else if (introPageNumber === 1) {
                 return (
                     <>
-                        <img alt="title_page" src={HorseBaby} />
+                        <img className="container" alt="title_page" src={HorseBaby} />
                         <div className="text-box" onClick={this.incrementIntroPageNumber}>
                             In fact,
                             <span className="orange"> {this.state.horseName} </span>
@@ -253,7 +253,7 @@ export default class Main extends Component {
             else if (introPageNumber === 2) {
                 return (
                     <>
-                        <img alt="title_page" src={HorseSad} />
+                        <img className="container" alt="title_page" src={HorseSad} />
                         <div className="text-box" onClick={this.incrementIntroPageNumber}>
                             <span className="orange"> {this.state.horseName}</span>
                             's favorite snacks are carrots. It's unfortunate that Herald is allergic to it.
@@ -264,7 +264,7 @@ export default class Main extends Component {
             else if (introPageNumber === 3) {
                 return (
                     <>
-                        <img alt="title_page" src={HorseHappy} />
+                        <img className="container" alt="title_page" src={HorseHappy} />
                         <div className="text-box" onClick={this.incrementIntroPageNumber}>
                             HOWEVER,
                             <span className="orange"> {this.state.horseName}</span>
@@ -278,7 +278,7 @@ export default class Main extends Component {
             else if (introPageNumber === 4) {
                 return (
                     <>
-                        <img alt="title_page" src={HorseSmile} />
+                        <img className="container" alt="title_page" src={HorseSmile} />
                         <div className="text-box" onClick={this.incrementIntroPageNumber}>
                             Now you and
                             <span className="orange"> {this.state.horseName} </span>
@@ -290,7 +290,7 @@ export default class Main extends Component {
             else if (introPageNumber === 5) {
                 return (
                     <>
-                        <img alt="title_page" src={HorseIntrigue} />
+                        <img className="container" alt="title_page" src={HorseIntrigue} />
                         <div className="text-box" onClick={this.incrementIntroPageNumber}>
                             Oh look! The doctor's mail has arrived.
                         </div>
@@ -300,8 +300,8 @@ export default class Main extends Component {
             else if (introPageNumber === 6) {
                 return (
                     <>
-                        <img alt="title_page" src={HorseSmile} />
-                        <button className="corner-button" onClick={this.incrementIntroPageNumber}>
+                        <img className="container" alt="title_page" src={HorseSmile} />
+                        <button className="container-mail" onClick={this.incrementIntroPageNumber}>
                             <img src={MailAlert} alt="mail" />
                         </button>
                     </>
@@ -310,8 +310,8 @@ export default class Main extends Component {
             else if (introPageNumber === 7) {
                 return (
                     <>
-                        <img alt="title_page" src={HorseHappy} />
-                        <button className="corner-button" onClick={this.incrementIntroPageNumber}>
+                        <img className="container" alt="title_page" src={HorseHappy} />
+                        <button className="container-mail" onClick={this.incrementIntroPageNumber}>
                             <img src={MailOpen} alt="mail" />
                         </button>
                         <div className="text-box" onClick={this.incrementIntroPageNumber}>
@@ -358,7 +358,7 @@ export default class Main extends Component {
         const getActivityDisplay = () => {
             return (
                 <>
-                    <img alt="title_page"
+                    <img className="container" alt="title_page"
                         src={
                             activity === "feed" ?
                                 HorseCarrot :
@@ -401,17 +401,14 @@ export default class Main extends Component {
                         <div className="activity-item">
                             <label style={{ marginRight: "15px" }}>Hunger: </label>
                             <progress value={hungerValue} max="100"></progress>
-                            {/* <label style={{ marginRight: "15px" }}> + 350</label> */}
                         </div>
                         <div className="activity-item">
                             <label>Affection: </label>
                             <progress value={affectionValue} max="100"></progress>
-                            {/* <label style={{ marginRight: "15px" }}> + 150</label> */}
                         </div>
                         <div className="activity-item">
                             <label style={{ marginRight: "14px" }}>Fatigue: </label>
                             <progress value={fatigueValue} max="100"></progress>
-                            {/* <label style={{ marginRight: "15px" }}> + 550</label> */}
                         </div>
                     </div>
 
@@ -429,7 +426,7 @@ export default class Main extends Component {
                             <div className="game-over">Game Over</div>
                             <div className="counter">Day: {dayCounter} </div>
                             <div className="score">Score: {score} </div>
-                            <img alt="title_page" src={HorseDead} />
+                            <img className="container" alt="title_page" src={HorseDead} />
                             <div className="text-box" onClick={this.toggleShowCredits}>
                                 <span className="orange"> {this.state.horseName} </span>
                                 {this.state.hungerValue <= 0 ? 'starved to death...' : null}
@@ -478,7 +475,7 @@ export default class Main extends Component {
                 <div className="container">
                     {menuPage ? (
                         <div>
-                            <img alt="title_page" src={TitlePage} />
+                            <img className="container" alt="title_page" src={TitlePage} />
                             <button className="top-button">
                                 <img src={PlayGame} alt="play_game" onClick={this.showPlayerNameInput} />
                             </button>
@@ -486,7 +483,7 @@ export default class Main extends Component {
                     ) : (
                         playerNameInputPage ? (
                             <div>
-                                <img alt="title_page" src={TitlePage} />
+                                <img className="container" alt="title_page" src={TitlePage} />
                                 <div className="text-box">What's your name? (Not that important)</div>
                                 <form className="form-box">
                                     <input key="1" type="text" placeholder="Name" value={playerName} onChange={this.savePlayerName} />
@@ -498,7 +495,7 @@ export default class Main extends Component {
                         ) : (
                             horseNameInputPage ? (
                                 <div>
-                                    <img alt="title_page" src={TitlePage} />
+                                    <img className="container" alt="title_page" src={TitlePage} />
                                     <div className="text-box">Name your pet horse.</div>
                                     <form className="form-box">
                                         <input key="2" type="text" placeholder="Name" value={horseName} onChange={this.saveHorseName} />

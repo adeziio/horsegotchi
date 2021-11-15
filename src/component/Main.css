@@ -10,18 +10,36 @@ h1 {
 }
 
 .center {
-    align-items: center;
-    margin-left: 25%;
-    margin-right: 25%
+    position: relative;
+    height: auto;
+    border: 5px black;
+    display: block;
+    align-content: center;
+    top: 0;
+    left: 0;
+    margin: auto;
 }
 
 .container {
-    margin-left: 30%;
-    margin-right: 30%;
     position: relative;
-    width: 700px;
-    height: 500px;
+    width: 650px;
+    height: auto;
     border: 5px black;
+    display: block;
+    align-content: center;
+    top: 0;
+    left: 0;
+    margin: auto;
+}
+
+.container-mail {
+    position: absolute;
+    padding: 0px;
+    border: none;
+    background: none;
+    left: 83%;
+    top: 70%;
+    transform: translateX(-50%);
 }
 
 .top-button {
@@ -31,7 +49,6 @@ h1 {
     background: none;
     left: 50%;
     top: 40%;
-    z-index: 30;
     transform: translateX(-50%);
 }
 
@@ -62,12 +79,12 @@ h1 {
 .text-box {
     font-family: 'Short Stack';
     position: absolute;
-    width: 550px;
-    height: 90px;
+    width: 500px;
+    height: auto;
     bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 999;
+    left: 0;
+    right: 0;
+    margin: auto;
     padding: 30px;
     border-radius: 15px;
     border-style: solid;
@@ -76,9 +93,6 @@ h1 {
     font-size: larger;
     color: white;
     opacity: 1;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    user-select: none;
 }
 
 .text-box:hover {
@@ -102,40 +116,28 @@ h1 {
 
 .counter {
     position: absolute;
-    left: 82%;
-    top: 12%;
+    left: 80%;
+    top: 5%;
     z-index: 30;
     font-family: 'Indie Flower';
     font-weight: 700;
-    font-size: x-large;
-    background-color: white;
-    padding: 5px;
-    border-radius: 15px;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    user-select: none;
 }
 
 .score {
     position: absolute;
-    left: 82%;
-    top: 18%;
+    left: 80%;
+    top: 10%;
     z-index: 30;
     font-family: 'Indie Flower';
     font-weight: 700;
-    font-size: x-large;
-    background-color: white;
-    padding: 5px;
-    border-radius: 15px;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    user-select: none;
 }
 
 .icons-button {
     padding: 0px;
     border: none;
     background: none;
+    padding: -20px;
+    margin: -20px;
 }
 
 .grid-container {
@@ -158,13 +160,6 @@ label {
     z-index: 30;
     font-family: 'Indie Flower';
     font-weight: 700;
-    font-size: x-large;
-    background-color: white;
-    padding: 5px;
-    border-radius: 15px;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    user-select: none;
 }
 .activity-item {
     position: relative;
