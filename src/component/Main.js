@@ -401,17 +401,17 @@ export default class Main extends Component {
                         <div className="activity-item">
                             <label style={{ marginRight: "15px" }}>Hunger: </label>
                             <progress value={hungerValue} max="100"></progress>
-                            <label style={{ marginRight: "15px" }}> + 350</label>
+                            {/* <label style={{ marginRight: "15px" }}> + 350</label> */}
                         </div>
                         <div className="activity-item">
                             <label>Affection: </label>
                             <progress value={affectionValue} max="100"></progress>
-                            <label style={{ marginRight: "15px" }}> + 150</label>
+                            {/* <label style={{ marginRight: "15px" }}> + 150</label> */}
                         </div>
                         <div className="activity-item">
                             <label style={{ marginRight: "14px" }}>Fatigue: </label>
                             <progress value={fatigueValue} max="100"></progress>
-                            <label style={{ marginRight: "15px" }}> + 550</label>
+                            {/* <label style={{ marginRight: "15px" }}> + 550</label> */}
                         </div>
                     </div>
 
