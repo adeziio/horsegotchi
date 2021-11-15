@@ -439,11 +439,7 @@ export default class Main extends Component {
                             <div class="credits">Character Design</div>
                             <div class="credits-body">Phuong</div>
 
-                            <div class="credits">Gameplay Design</div>
-                            <div class="credits-body">Aden</div>
-
                             <div class="credits">Programming</div>
-                            <div class="credits-body">Aden</div>
                             <div class="credits-body">Phuong</div>
 
                             <div class="credits">Icons</div>
