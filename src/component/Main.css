@@ -80,10 +80,8 @@ h1 {
 .text-box {
     font-family: 'Short Stack';
     position: absolute;
-    width: 500px;
     max-width: 100%;
     height: auto;
-    bottom: 50px;
     left: 0;
     right: 0;
     margin: auto;
@@ -92,7 +90,6 @@ h1 {
     border-style: solid;
     border: 10px black;
     background: rgb(0, 0, 0);
-    font-size: larger;
     color: white;
     opacity: 1;
 }
