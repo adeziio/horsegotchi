@@ -68,7 +68,7 @@ export default class Main extends Component {
                 this.setState(prevState => ({
                     hungerValue: prevState.hungerValue > 0 ? prevState.hungerValue - 5 : prevState.hungerValue,
                     affectionValue: prevState.affectionValue < 100 ? prevState.affectionValue + 5 : prevState.affectionValue,
-                    fatigueValue: prevState.fatigueValue < 100 ? prevState.fatigueValue + 2 : prevState.fatigueValue,
+                    fatigueValue: prevState.fatigueValue < 100 ? prevState.fatigueValue + 1 : prevState.fatigueValue,
                     score: prevState.score + 150
                 }));
             }
