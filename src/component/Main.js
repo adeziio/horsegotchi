@@ -431,6 +431,7 @@ export default class Main extends Component {
                         <div className="activity-item">
                             <label >Hunger: </label>
                             <Progress
+                                className="progress-bar"
                                 percent={hungerValue}
                                 success={hungerValue >= 70 ? true : false}
                                 warning={hungerValue < 70 && hungerValue > 20 ? true : false}
@@ -442,6 +443,7 @@ export default class Main extends Component {
                         <div className="activity-item">
                             <label >Affection: </label>
                             <Progress
+                                className="progress-bar"
                                 percent={affectionValue}
                                 success={affectionValue >= 70 ? true : false}
                                 warning={affectionValue < 70 && affectionValue > 20 ? true : false}
@@ -453,6 +455,7 @@ export default class Main extends Component {
                         <div className="activity-item">
                             <label>Fatigue: </label>
                             <Progress
+                                className="progress-bar"
                                 percent={fatigueValue}
                                 success={fatigueValue <= 30 ? true : false}
                                 warning={fatigueValue < 80 && fatigueValue > 30 ? true : false}
