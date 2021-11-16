@@ -161,7 +161,9 @@ label {
     z-index: 30;
     font-family: 'Indie Flower';
     font-weight: 700;
+    width: 25%;
 }
+
 .activity-item {
     position: relative;
 }
@@ -204,4 +206,12 @@ label {
 
 .sound:hover {
     cursor: pointer;
+}
+
+.ui.progress .bar {
+    min-width: 0 !important;
+}
+  
+.ui.active.progress .bar {
+    min-width: 0 !important;
 }

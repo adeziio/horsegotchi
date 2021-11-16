@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Icon, Progress } from 'semantic-ui-react';
 import './Main.css';
 import Title from "./../img/title.png";
 import TitlePage from "./../gifs/title-page.gif";
@@ -22,7 +23,6 @@ import HandHeart from "./../img/hand-heart.png";
 import HandHeartClicked from "./../img/hand-heart-clicked.png";
 import Walk from "./../img/walk.png";
 import WalkClicked from "./../img/walk-clicked.png";
-import { Icon } from 'semantic-ui-react';
 import Music from "./../music/smilin-and-vibin.mp3";
 import { Howl } from 'howler';
 
@@ -429,16 +429,37 @@ export default class Main extends Component {
                 <>
                     <div className="activity-bar">
                         <div className="activity-item">
-                            <label style={{ marginRight: "15px" }}>Hunger: </label>
-                            <progress value={hungerValue} max="100"></progress>
+                            <label >Hunger: </label>
+                            <Progress
+                                percent={hungerValue}
+                                success={hungerValue >= 70 ? true : false}
+                                warning={hungerValue < 70 && hungerValue > 20 ? true : false}
+                                error={hungerValue <= 20 ? true : false}
+                                size='tiny'
+                            >
+                            </Progress>
                         </div>
                         <div className="activity-item">
-                            <label>Affection: </label>
-                            <progress value={affectionValue} max="100"></progress>
+                            <label >Affection: </label>
+                            <Progress
+                                percent={affectionValue}
+                                success={affectionValue >= 70 ? true : false}
+                                warning={affectionValue < 70 && affectionValue > 20 ? true : false}
+                                error={affectionValue <= 20 ? true : false}
+                                size='tiny'
+                            >
+                            </Progress>
                         </div>
                         <div className="activity-item">
-                            <label style={{ marginRight: "14px" }}>Fatigue: </label>
-                            <progress value={fatigueValue} max="100"></progress>
+                            <label>Fatigue: </label>
+                            <Progress
+                                percent={fatigueValue}
+                                success={fatigueValue <= 30 ? true : false}
+                                warning={fatigueValue < 80 && fatigueValue > 30 ? true : false}
+                                error={fatigueValue >= 80 ? true : false}
+                                size='tiny'
+                            >
+                            </Progress>
                         </div>
                     </div>
 
