@@ -117,7 +117,6 @@ h1 {
     position: absolute;
     left: 70%;
     top: 5%;
-    z-index: 30;
     font-family: 'Indie Flower';
     font-weight: 700;
 }
@@ -126,7 +125,6 @@ h1 {
     position: absolute;
     left: 70%;
     top: 10%;
-    z-index: 30;
     font-family: 'Indie Flower';
     font-weight: 700;
 }
@@ -194,4 +192,16 @@ label {
 
 .credits-body {
     text-align: center;
+}
+
+.sound {
+    position: absolute;
+    left: 5%;
+    top: 87%;
+    font-family: 'Indie Flower';
+    font-weight: 700;
+}
+
+.sound:hover {
+    cursor: pointer;
 }

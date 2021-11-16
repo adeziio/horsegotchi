@@ -22,6 +22,9 @@ import HandHeart from "./../img/hand-heart.png";
 import HandHeartClicked from "./../img/hand-heart-clicked.png";
 import Walk from "./../img/walk.png";
 import WalkClicked from "./../img/walk-clicked.png";
+import { Icon } from 'semantic-ui-react';
+import Music from "./../music/smilin-and-vibin.mp3";
+import { Howl } from 'howler';
 
 export default class Main extends Component {
     constructor(props) {
@@ -43,19 +46,27 @@ export default class Main extends Component {
             fatigueValue: 0,
             isDead: false,
             showCredit: false,
-            score: 0
+            score: 0,
+            hasSound: true,
+            sound: new Howl({
+                src: [Music]
+            })
         }
     }
 
     componentDidMount() {
         this.interval = setInterval(() => this.tick(), 1000);
+
     }
 
     tick() {
         const activity = this.state.activity;
-        this.checkDead()
+        this.checkDead();
         if (this.state.gamePage && !this.state.isDead) {
-            this.handleDayIncrement()
+            if (!this.state.sound.playing([Music])) {
+                this.state.sound.play();
+            }
+            this.handleDayIncrement();
             if (activity === "feed") {
                 this.setState(prevState => ({
                     hungerValue: prevState.hungerValue < 100 ? prevState.hungerValue + 5 : prevState.hungerValue,
@@ -106,6 +117,8 @@ export default class Main extends Component {
         if (this.state.hungerValue <= 0 || this.state.hungerValue > 100 || this.state.affectionValue <= 0 || this.state.fatigueValue > 100) {
             this.setState({
                 isDead: true
+            }, () => {
+                this.state.sound.stop();
             })
         }
     }
@@ -203,6 +216,21 @@ export default class Main extends Component {
         window.location.reload(false);
     }
 
+    toggleSound = () => {
+        this.setState(prevState => ({
+            hasSound: !prevState.hasSound
+        }), () => {
+            if (this.state.hasSound) {
+                if (!this.state.sound.playing([Music])) {
+                    this.state.sound.play();
+                }
+            }
+            else {
+                this.state.sound.stop();
+            }
+        })
+    }
+
     render() {
         const {
             menuPage,
@@ -220,7 +248,8 @@ export default class Main extends Component {
             fatigueValue,
             isDead,
             showCredit,
-            score
+            score,
+            hasSound
         } = this.state;
 
         const getIntroPage = () => {
@@ -337,6 +366,7 @@ export default class Main extends Component {
                         <>
                             {getActivityDisplay()}
                             {getInfoDisplay()}
+                            {getSoundDisplay()}
                             <div class="grid-container">
                                 <button className="icons-button" title="Feed" onClick={this.toggleClickedCarrot}>
                                     <img className="button-img" src={activity === "feed" ? CarrotClicked : Carrot} alt="feed" />
@@ -463,6 +493,14 @@ export default class Main extends Component {
                             <div class="credits-body">{playerName}</div>
                         </>
                     }
+                </>
+            )
+        }
+
+        const getSoundDisplay = () => {
+            return (
+                <>
+                    <div className="sound" onClick={this.toggleSound}><Icon name={hasSound ? 'volume up' : 'volume off'} size='large' /></div>
                 </>
             )
         }
