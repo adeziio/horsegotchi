@@ -396,25 +396,25 @@ export default class Main extends Component {
                                     HorseHandHeart :
                                     activity === "walk" ?
                                         HorseWalk :
-                                        (hungerValue < 40 || affectionValue < 40 || fatigueValue > 60) ?
+                                        (hungerValue < 20 || affectionValue < 20 || fatigueValue > 80) ?
                                             HorseSad : HorseIdle
 
 
                         }
                     />
-                    {hungerValue < 40 && hungerValue > 0 ?
+                    {hungerValue < 20 && hungerValue > 0 ?
                         <div className="text-box" onClick={this.incrementIntroPageNumber}>
                             <span className="orange"> {this.state.horseName} </span>
                             is feeling hungry!
                         </div> : null
                     }
-                    {affectionValue < 40 && affectionValue > 0 ?
+                    {affectionValue < 20 && affectionValue > 0 ?
                         <div className="text-box" onClick={this.incrementIntroPageNumber}>
                             <span className="orange"> {this.state.horseName} </span>
                             is feeling sad!
                         </div> : null
                     }
-                    {fatigueValue > 60 && fatigueValue < 100 ?
+                    {fatigueValue > 20 && fatigueValue < 100 ?
                         <div className="text-box" onClick={this.incrementIntroPageNumber}>
                             <span className="orange"> {this.state.horseName} </span>
                             is feeling tired!
