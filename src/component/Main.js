@@ -402,19 +402,19 @@ export default class Main extends Component {
 
                         }
                     />
-                    {hungerValue < 20 && hungerValue > 0 ?
+                    {hungerValue > 0 && hungerValue < 20 ?
                         <div className="text-box" onClick={this.incrementIntroPageNumber}>
                             <span className="orange"> {this.state.horseName} </span>
                             is feeling hungry!
                         </div> : null
                     }
-                    {affectionValue < 20 && affectionValue > 0 ?
+                    {affectionValue > 0 && affectionValue < 20 ?
                         <div className="text-box" onClick={this.incrementIntroPageNumber}>
                             <span className="orange"> {this.state.horseName} </span>
                             is feeling sad!
                         </div> : null
                     }
-                    {fatigueValue > 20 && fatigueValue < 100 ?
+                    {fatigueValue > 80 && fatigueValue < 100 ?
                         <div className="text-box" onClick={this.incrementIntroPageNumber}>
                             <span className="orange"> {this.state.horseName} </span>
                             is feeling tired!
