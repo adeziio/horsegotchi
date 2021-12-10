@@ -491,30 +491,7 @@ export default class Main extends Component {
                         </>
                         :
                         <>
-                            <h1>Credits</h1>
-                            <div class="credits">Art</div>
-                            <div class="credits-body">Phuong</div>
-                            <div class="credits-body">Little cousin</div>
-
-                            <div class="credits">Animation</div>
-                            <div class="credits-body">Little cousin</div>
-
-                            <div class="credits">Character Design</div>
-                            <div class="credits-body">Phuong</div>
-
-                            <div class="credits">Programming</div>
-                            <div class="credits-body">Phuong</div>
-
-                            <div class="credits">Icons</div>
-                            <div class="credits-body">Phuong</div>
-
-                            <div class="credits">End Scenes</div>
-                            <div class="credits-body">Little cousin</div>
-                            <div class="credits-body">Phuong</div>
-
-                            <div class="credits">Actors</div>
-                            <div class="credits-body">{horseName}</div>
-                            <div class="credits-body">{playerName}</div>
+                            <h1>Thanks for playing!</h1>
                         </>
                     }
                 </>
